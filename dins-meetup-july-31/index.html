@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Типизируй это!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <style>
+        :root {
+            --color-main: #ee8208;
+            --base-icon-size: 100px;
+        }
+
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+
+        .progress::before {
+            background-color: var(--color-main);
+        }
+
+
+        .space {
+            display: inline-block;
+        }
+
+
+        .secondary {
+            /* Делаем не слишком светлым, чтобы текст не исчез на экране от проектора. */
+            color: #777;
+        }
+
+
+        .icon {
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        /* spaces */
+        .icon + .icon,
+        .icon + .space._icon,
+        .space._icon + .icon,
+        .space._icon + .space._icon {
+            margin-left: 20px;
+        }
+        /* sizes */
+        .icon,
+        .space._icon {
+            --icon-size: var(--base-icon-size);
+        }
+        .icon._half,
+        .space._icon._half {
+            --icon-size: calc(var(--base-icon-size) / 2);
+        }
+        .icon._quart,
+        .space._icon._quart {
+            --icon-size: calc(var(--base-icon-size) / 4)
+        }
+        .icon,
+        .space._icon {
+            width: var(--icon-size);
+            height: var(--icon-size);
+        }
+        /* pictures */
+        .icon._love-is-girl {
+            background-image: url('pictures/love-is-girl.png');
+        }
+        .icon._love-is-boy {
+            background-image: url('pictures/love-is-boy.png');
+        }
+        .icon._love-is-girl,
+        .icon._love-is-boy {
+            background-position: center center;
+            background-size: contain;
+            --icon-size: 50%;
+        }
+
+
+        /* layout */
+
+        .slide.layout {
+            display: flex;
+            flex-direction: column;
+        }
+        .slide.layout > div {
+            flex: 1;
+            margin-bottom: 30px;
+        }
+
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .centered._row {
+            flex-direction: row;
+        }
+        .col2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .col2 > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        /* Чтобы вмещало больше текста. */
+        .col2 > div {
+            margin-left: -50px;
+        }
+        .col2 > div + div {
+            margin-left: 0;
+            margin-right: -50px;
+        }
+
+        div.draft {
+            display: none;
+        }
+
+        span.strike {
+            text-decoration: line-through;
+        }
+
+        /* Делаем более сильный селектор, чтобы переопределить некоторые стили Shower'а. */
+        .slide code {
+            white-space: pre-wrap;
+            display: block;
+            line-height: 1.2em;
+            padding: 15px;
+            min-width: 70%;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .ok {
+            color: #ee8208;
+        }
+    </style>
+</head>
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Shower Presentation Engine</h1>
+        <p>Yours Truly, Famous Inc.</p>
+    </header>
+
+    <section class="slide">
+        <h1>Типизируй это!</h1>
+        <h3>Феоктистов А.</h3>
+        <h4>Яндекс.Маркет</h4>
+    </section>
+
+    <section class="slide layout">
+        <h2>Мой опыт ...</h2>
+        <div class="centered">
+            <div>
+                <span class="secondary">Школа:</span> <span class="strike">Basic</span>, Pascal/Delphi,
+                <br>
+                <span class="secondary">Университет:</span> Delphi, C++ (вычисления)
+                <br>
+                <span class="secondary">Первая работа:</span> C++ (WinAPI), Java, HTML/CSS/JS
+                <br>
+                <span class="secondary">С тех пор:</span> HTML/CSS/JS, XSLT, Bash
+                <br>
+                <span class="secondary">Последнее время:</span> TypeScript, Java
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Ну а у кого-то ...</h2>
+        <div class="centered">
+            <div>
+                PHP / Python / Perl / Ruby / JavaScript / etc
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Щепотка бюрократии ...</h2>
+        <div class="centered">
+            Что же такое эта ваша типизация?
+            <br>
+            <span class="secondary">
+                <span class="strike">Алиса</span> Википедия поможет нам!
+            </span>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Динамическая типизация это ...</h2>
+        <div class="col2">
+            <div>
+                <span class="icon _love-is-boy"></span>
+            </div>
+            <div>
+                <div>
+                    ... когда переменная
+                    <br>
+                    связывается с типом
+                    <br>
+                    в момент присваивания.
+                    <br>
+                    <span class="secondary">© Википедия</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Динамическая типизация это ...</h2>
+        <div class="centered">
+            <div>
+                <code>
+                    let a = 1; // number
+                    a = 2; // number
+                    a = 'foo'; // string
+                    a = [1, 'foo']; // Array
+                    a = { foo: 1 }; // Object
+                    a = true; // boolean
+                </code>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Статическая типизация это ...</h2>
+        <div class="col2">
+            <div>
+                <span class="icon _love-is-girl"></span>
+            </div>
+            <div>
+                <div>
+                    ... когда переменная, параметр
+                    <br>
+                    или возвращаемое значении функции
+                    <br>
+                    связывается с типом в момент
+                    <br>
+                    объявления и не меняет тип позже.
+                    <br>
+                    <span class="secondary">© Википедия
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Статическая типизация это ...</h2>
+        <div class="centered">
+            <div>
+                <code>
+                    let a = 1 // number
+                    a = 2; // number
+                    a = 'foo'; // Compilation error!
+                    a = [1, 'foo']; // Compilation error!
+                    a = { foo: 1 }; // Compilation error!
+                    a = true; // Compilation error!
+                </code>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>К примерам!</h2>
+        <div class="centered">
+            JavaScript vs TypeScript (Flow/Dart/etc)
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Компиляция</h2>
+        <div class="centered">
+            <ul>
+                <li>Останется только <span class="strike">один</span> Javascript!</li>
+                <li>Compilation error - на этапе разработки / сборки.</li>
+                <li>Compilation error - файл / строчка / символ.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Функции в JavaScript</h2>
+        <div class="centered">
+            <code>
+                function sum(a, b) {
+                    return a + b;
+                }
+
+                sum(1, 2); // 3
+                sum('1', 2); // '12'
+                sum(1, null); // NaN
+                sum([], []); // ''
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Функции в TypeScript</h2>
+        <div class="centered">
+            <code>
+                function sum(a: number, b: number) {
+                    return a + b;
+                }
+
+                sum(1, 2); // 3
+                sum('1', 2); // Compilation error!
+                sum(1, null); // Compilation error!
+                sum([], []); // Compilation error!
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Функции в TypeScript (бонус)</h2>
+        <div class="centered">
+            <code>
+                // Вывод типа возвращаемого значения: number
+                function sum(a: number, b: number) {
+                    return a + b;
+                }
+
+                let res = 'foo'; // string
+                res = sum(1, 2); // Compilation error!
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Данные в JavaScript</h2>
+        <div class="centered">
+            <code>
+                // Данные от backend - было
+                { name: 'Вася Пупкин', age: 23 }
+
+                // Данные от backend - стало
+                { firstName: 'Вася', lastName: 'Пупкин', age: 23 }
+
+                // поиск и, возможно, IDE
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Данные в TypeScript</h2>
+        <div class="centered">
+            <code>
+                // Данные от backend - было
+                interface IUserInfo {
+                    name: string;
+                    age: number;
+                }
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Данные в TypeScript</h2>
+        <div class="centered">
+            <code>
+                // Данные от backend - стало
+                interface IUserInfo {
+                    firstName: string;
+                    lastName: string;
+                    age: number;
+                }
+
+                // Compilation error!
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Nullable в JavaScript</h2>
+        <div class="centered">
+            <code>
+                const user = getUserOrNull();
+
+                const userName = user.getName();
+                // Cannot read property 'getName' of null
+
+                // Runtime error!
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Nullable в TypeScript</h2>
+        <div class="centered">
+            <code>
+                function getUserOrNull(): ISomeUser | null;
+
+                const user = getUserOrNull();
+
+                const userName = user.getName();
+                // Object is possibly 'null'.
+
+                // Compilation error!
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Nullable в TypeScript</h2>
+        <div class="centered">
+            <code>
+                function getUserOrNull(): ISomeUser | null;
+
+                const user = getUserOrNull();
+
+                if (!userName) {
+                    // обработка null
+                }
+
+                const userName = user.getName(); // OK
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Generics в JavaScript</h2>
+        <div class="centered">
+            <div>
+                <span class="strike">Хнык</span> Их нет ;(
+                <br>
+                <span class="secondary">А что такое эти ваши Generics?</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+            <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <div>
+                <code>
+                    const list = []; // Array
+                    list.push(1);
+                    list.push('foo');
+                    list.push([]);
+                    list.push({});
+                </code>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+            <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <div>
+                <code>
+                    const list: Array&lt;number&gt; = [];
+                    list.push(1); // OK
+                    list.push('foo'); // Compilation error!
+                    list.push([]); // Compilation error!
+                    list.push({}); // Compilation error!
+                </code>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <div>
+                Мощь generics безгранична!
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <code>
+                interface IUserInfo {
+                    firstName: string;
+                    lastName: string;
+                    age: number;
+                }
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <code>
+                function getUserProp(
+                    userInfo: IUserInfo,
+                    prop: string
+                ): ??? {
+                    return userInfo[prop];
+                }
+
+                getUserProp(someUser, 'firstName'); // string
+                getUserProp(someUser, 'age'); // number
+                getUserProp(someUser, 'foo'); // Бросать ошибку!
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <code>
+                // Доставайте свои волшебные палочки!
+
+                function getProp&lt;T, K extends keyof T&gt;(
+                    data: T, // Объект типа T.
+                    key: K // K - ключи в T, key - ключ!
+                ): T[K] { // Тип значения ключа key в T.
+                    return data[key];
+                }
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Generics в TypeScript</h2>
+        <div class="centered">
+            <code>
+                const ui: IUserInfo = { /* ... */ };
+
+                const name = getProp(ui, 'firstName'); // string
+                const age = getProp(ui, 'age'); // number
+
+                const foo = getProp(ui, 'foo');
+                // Compilation error: Argument of type '"foo"'
+                // is not assignable to parameter of type
+                // '"firstName" | "lastName" | "age"'.
+            </code>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Бесплатный сыр ...</h2>
+        <div class="centered">
+            <div>
+                ... бывает только в мышеловке.
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Типы - это про данные</h2>
+        <div class="centered">
+            <div>
+                Типизация заставляет думать про потоки данных,
+                их типы и преобразования, и уже под эти
+                потоки пишется код.
+                <br>
+                <span class="secondary">Слом парадигмы!</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Типы - это меньше багов</h2>
+        <div class="centered">
+            <div>
+                Добавляете типизацию - убираете целый класс багов,
+                связанных с неожиднными типами (см. примеры live coding ранее).
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Типы - это меньше JSDoc</h2>
+        <div class="centered">
+            <div>
+                Типизация
+                + понятные имена переменных
+                + короткие функции/методы
+                = JSDoc только в исключительных случаях.
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Типы - это поддержка IDE</h2>
+        <div class="centered">
+            <div>
+                Конечно, IDE от JetBrains уже научились довольно неплохо работать с JavaScript,
+                остальные IDE/редакторы тоже подтягиваются, но в типизированных языках
+                подсказки от IDE/редактора работают намного лучше!
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Ложка дёгтя</h2>
+        <div class="centered">
+            <div>
+                От JavaScript нам пока никуда не уйти - в браузере и NodeJS исполняется
+                не TypeScript/Flow/etc, а именно JavaScript.
+                На каком бы языке мы ни писали свой код, в конечном итоге исполнятся
+                будет всё-таки JavaScript - об этом нужно помнить!
+                Типизация - это не панацея, а всего лишь инструмент, который повышает надёжность
+                нашего кода, последнее слово всё-таки за JavaScript
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Заинтересовались?</h2>
+        <div class="centered">
+            <div>
+                Инструментов для типизации нашего кода - много!
+                <br>
+                Хотя все из них компилируемые, это не должно доставить хлопот.
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+            <h2>А глаза-то разбегаются!</h2>
+            <div class="centered">
+                <div>
+                    Flow, TypeScript, Dart, Elm,
+                    <span class="ok">Java/GWT</span>, ReasonML, Kotlin, etc
+                </div>
+            </div>
+        </section>
+
+    <section class="slide layout">
+        <h2>TypeScript</h2>
+        <div class="centered">
+            <div>
+                <ul>
+                    <li>cli или Babel 7</li>
+                    <li>можно переводить по одному файлу (.js -> .ts)</li>
+                    <li>TypeScript умеет проверять типы в js-файлах на основе JSDoc</li>
+                    <li>самая большая библиотека типов для существующего кода</li>
+                    <li>свободное взаимодействие с js-кодом</li>
+                    <li>отличная обратная совместимость между версиями</li>
+                    <li>class/private/public (компиляция)</li>
+                    <li>разрабатывается Microsoft</li>
+                </ul>
+                TODO: ссылки на доклады, которые могут быть полезны.
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Flow</h2>
+        <div class="centered">
+            <div>
+                <ul>
+                    <li>cli или Babel</li>
+                    <li>можно переводить по одному файлу ( // @flow )</li>
+                    <li>довольно большая библиотека типов для существующего кода</li>
+                    <li>свободное взаимодействие с js-кодом</li>
+                    <li>проблемная обратная совместимость между версиями</li>
+                    <li>нативный JS</li>
+                    <li>разрабатывается Facebook</li>
+                </ul>
+                TODO: ссылки на доклады, которые могут быть полезны.
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Flow vs TypeScript</h2>
+        <div class="centered">
+            <div>
+                Flow ~=~ TypeScript
+                <ul>
+                    <li>паритет по фичам</li>
+                    <li>доклады/статьи/коллеги - постройте своё мнение</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Dart</h2>
+        <div class="centered">
+            <div>
+                ATTENTION: дилетант детектед!
+                <ul>
+                    <li>cli</li>
+                    <li>взаимодействие с js-кодом возможно</li>
+                    <li>отличный tree shaking и размер бандла</li>
+                    <li>новый универсальный язык (фронтенд, сервер, мобилки)</li>
+                    <li>разрабатывается Google</li>
+                </ul>
+                TODO: ссылка на доклад Димы Махнёва
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Elm</h2>
+        <div class="centered">
+            <div>
+                ATTENTION: дилетант детектед!
+                <ul>
+                    <li>функциональый ?</li>
+                    <li>только фронтенд ?</li>
+                    <li>только свой фреймворк ?</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Java / GWT</h2>
+        <div class="centered">
+            <div>
+                <ul>
+                    <li>Java</li>
+                    <li>только фронтенд</li>
+                    <li>до сих пор развивается</li>
+                </ul>
+                TODO: шутка про Одноклассники?
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Rust, C++, etc</h2>
+        <div class="centered">
+            <div>
+                <ul>
+                    <li>Web Assembly</li>
+                    <li>только фронтенд ?</li>
+                    <li>пока есть ограничения</li>
+                    <li>большое будущее</li>
+                </ul>
+                TODO: wasm в NodeJS?
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Конец!</h2>
+        <div class="centered">
+            <div>
+                <ul>
+                    <li>Типизируйте!</li>
+                    <li>Выходите из зоны комфорта</li>
+                    <li>Да прибудет с Вами Сила!</li>
+                </ul>
+                TODO: ссылки и QR на презентацию.
+            </div>
+        </div>
+    </section>
+
+    <!-- Последний слайд!-->
+    <section class="slide">
+        <h2>Особые благодарности:</h2>
+        <ul>
+            <li>
+                Откуда я брал иконки
+            </li>
+        </ul>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="node_modules/shower-core/shower.min.js"></script>
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('code').forEach(code => {
+                const linesOfCode = code.innerText
+                    .split('\n')
+                    // Удаляем первую и последнюю пустую строку.
+                    .filter((item, index, arr) => item || (index && index !== (arr.length - 1)));
+                console.log('linesOfCode', linesOfCode);
+                if (!linesOfCode.length) {
+                    return;
+                }
+                const baseIndentMatches = linesOfCode[0].match(/^\s+/);
+                console.log('baseIndentMatches', baseIndentMatches);
+                if (!baseIndentMatches || !baseIndentMatches[0]) {
+                    return;
+                }
+                const baseIndent = baseIndentMatches[0];
+                console.log('baseIndent', baseIndent);
+
+                const normalizedLinesOfCode = linesOfCode.map(line => line.slice(baseIndent.length));
+                console.log('normalizedLinesOfCode', normalizedLinesOfCode);
+                code.innerHTML = normalizedLinesOfCode
+                    .map(line => line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+                    .join('<br>');
+            });
+        })
+    </script>
+
+</body>
+</html>

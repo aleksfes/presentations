@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ком задач ...</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <style>
+        :root {
+            --color-ok: #ee8208;
+            --base-icon-size: 100px;
+        }
+
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+
+        .progress::before {
+            background-color: var(--color-ok);
+        }
+
+
+        .space {
+            display: inline-block;
+        }
+
+
+        .icon {
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        /* spaces */
+        .icon + .icon,
+        .icon + .space._icon,
+        .space._icon + .icon,
+        .space._icon + .space._icon {
+            margin-left: 20px;
+        }
+        /* sizes */
+        .icon,
+        .space._icon {
+            --icon-size: var(--base-icon-size);
+        }
+        .icon._half,
+        .space._icon._half {
+            --icon-size: calc(var(--base-icon-size) / 2);
+        }
+        .icon._quart,
+        .space._icon._quart {
+            --icon-size: calc(var(--base-icon-size) / 4)
+        }
+        .icon,
+        .space._icon {
+            width: var(--icon-size);
+            height: var(--icon-size);
+        }
+        /*
+        .icon._one-half,
+        .space._icon._one-half {
+            --icon-size: calc(var(--base-icon-size) * 1.5);
+        }
+        .icon._double,
+        .space._icon._double {
+            --icon-size: calc(var(--base-icon-size) * 2);
+        }
+        */
+        /* pictures */
+        .icon._front {
+            background-image: url("pictures/html-5.svg");
+        }
+        .icon._java {
+            background-image: url("pictures/java.svg");
+        }
+        .icon._add {
+            background-image: url("pictures/add.svg");
+            color: #CCC;
+        }
+        .icon._arrow,
+        .icon._arrow._w {
+            /* west by defualt */
+            background-image: url("pictures/arrow.svg");
+        }
+        .icon._arrow._e {
+            transform: rotate(180deg);
+        }
+        .icon._arrow._n-s {
+            transform: rotate(-90deg);
+        }
+        .icon._arrow._nw-se {
+            transform: rotate(-145deg);
+        }
+        .icon._arrow._ne-sw {
+            transform: rotate(-45deg);
+        }
+        .icon._manager {
+            background-image: url("pictures/manager.svg");
+        }
+        .icon._jira {
+            background-image: url("pictures/jira.svg");
+        }
+        .icon._tamtam {
+            background-image: url("pictures/tamtam.svg");
+        }
+        .icon._paper {
+            background-image: url("pictures/paper.svg");
+        }
+        .icon._coffee {
+            background-image: url("pictures/coffee.svg");
+        }
+        .icon._support {
+            background-image: url("pictures/support.svg");
+        }
+        /*
+        .icon._red-cross {
+            background-image: url("pictures/red-add.svg");
+            transform: rotate(45deg);
+        }
+        */
+        /* These icons are too big. */
+        .icon._tamtam,
+        .icon._paper,
+        .icon._coffee {
+            background-size: 75%;
+            background-position: center center;
+        }
+
+
+        .cross {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("pictures/red-add.svg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            --cross-size: var(--base-icon-size);
+            background-size: var(--cross-size) var(--cross-size);
+            transform: rotate(45deg);
+        }
+        .cross._one-half {
+            --cross-size: calc(var(--base-icon-size) * 1.5);
+        }
+
+        .slide.layout {
+            display: flex;
+            flex-direction: column;
+        }
+        .slide.layout > div {
+            flex: 1;
+            margin-bottom: 30px;
+        }
+
+        /* layout */
+
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .centered._row {
+            flex-direction: row;
+        }
+        .col2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .col2 > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Shower Presentation Engine</h1>
+        <p>Yours Truly, Famous Inc.</p>
+    </header>
+
+    <section class="slide">
+        <h1>Направляем снежный ком задач в нужное русло</h1>
+        <h3>Феоктистов А.</h3>
+        <h4>Одноклассники, frontend для антиспама, саппорта, etc</h4>
+    </section>
+
+    <section class="slide">
+        <figure>
+            <blockquote>
+                <p>
+                    В этом мире есть только бесконечный поток изменений.
+                    <br>
+                    И вы, и я – просто отблески на его поверхности.
+                </p>
+            </blockquote>
+            <figcaption>&copy; В. О. Пелевин</figcaption>
+        </figure>
+    </section>
+
+    <section class="slide layout">
+        <h2>В начале было полтора frontend'ера ...</h2>
+        <div class="col2">
+            <div>
+                <span class="icon _front"></span>
+            </div>
+            <div>
+                <span class="icon _java"></span>
+                <span class="icon _add _quart"></span>
+                <span class="icon _front _half"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>И было у нас два менеджера ...</h2>
+        <div class="col2">
+            <div>
+                <span class="icon _manager"></span>
+            </div>
+            <div>
+                <span class="icon _manager"></span>
+            </div>
+            <div>
+                <span class="space _icon _half"></span>
+                <span class="space _icon _half"></span>
+                <span class="icon _arrow _half _n-s"></span>
+                <span class="space _icon _half"></span>
+                <span class="icon _arrow _half _nw-se"></span>
+            </div>
+            <div class="half-left">
+                <span class="icon _arrow _half _ne-sw"></span>
+                <span class="space _icon _half"></span>
+                <span class="icon _arrow _half _n-s"></span>
+                <span class="space _icon _half"></span>
+                <span class="space _icon _half"></span>
+            </div>
+            <div>
+                <span class="icon _front"></span>
+            </div>
+            <div>
+                <span class="icon _java"></span>
+                <span class="icon _add _quart"></span>
+                <span class="icon _front _half"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>И падали нам задачи ...</h2>
+        <div class="centered">
+            <div>
+                <span class="icon _manager"></span>
+                <span class="icon _manager"></span>
+            </div>
+            <div>
+                <span class="icon _arrow _half _ne-sw"></span>
+                <span class="icon _arrow _half _n-s"></span>
+                <span class="icon _arrow _half _nw-se"></span>
+            </div>
+            <div>
+                <span class="icon _jira"></span>
+                <span class="icon _tamtam"></span>
+                <span class="icon _coffee"></span>
+                <span class="icon _paper"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Но количество заказчиков росло ...</h2>
+        <div class="centered">
+            <div>
+                <span class="icon _manager"></span>
+                <span class="icon _manager"></span>
+                <span class="icon _support"></span>
+                <span class="icon _java"></span>
+            </div>
+            <div>
+                <span class="icon _arrow _half _ne-sw"></span>
+                <span class="icon _arrow _half _n-s"></span>
+                <span class="icon _arrow _half _nw-se"></span>
+            </div>
+            <div>
+                <span class="icon _jira"></span>
+                <span class="icon _tamtam"></span>
+                <span class="icon _coffee"></span>
+                <span class="icon _paper"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>И не всем нравилась ситуация ...</h2>
+        <div class="col2">
+            <div>
+                <span class="icon _front"></span>
+            </div>
+            <div>
+                <span class="icon _java"></span>
+                <span class="icon _add _quart"></span>
+                <span class="icon _front _half"></span>
+                <div class="cross _one-half"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>И стало немножечко хуже ...</h2>
+        <div class="centered">
+            <div>
+                <span class="icon _manager"></span>
+                <span class="icon _manager"></span>
+                <span class="icon _support"></span>
+                <span class="icon _java"></span>
+            </div>
+            <div>
+                <span class="icon _arrow _half _nw-se"></span>
+                <span class="icon _arrow _half _n-s"></span>
+                <span class="icon _arrow _half _ne-sw"></span>
+            </div>
+            <div>
+                <span class="icon _front"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide layout">
+        <h2>Но приоритеты - задача менеджера ...</h2>
+        <div class="centered">
+            <div>
+                <span class="icon _manager"></span>
+                <span class="icon _manager"></span>
+                <span class="icon _support"></span>
+                <span class="icon _java"></span>
+            </div>
+            <div>
+                <span class="icon _arrow _half _nw-se"></span>
+                <span class="icon _arrow _half _n-s"></span>
+                <span class="icon _arrow _half _ne-sw"></span>
+            </div>
+            <div class="centered _row">
+                <span class="space _icon"></span>
+                <span class="space _icon _half"></span>
+                <span class="icon _front"></span>
+                <span class="icon _arrow _half _e"></span>
+                <span class="icon _manager"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Последний слайд!-->
+    <section class="slide">
+        <h2>Особые благодарности:</h2>
+        <ul>
+            <li>
+                <a href="https://shwr.me" target="_blank">Shower Presentation Engine</a>
+            </li>
+            <li>
+                Icons from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a>:
+                <ul>
+                    <li>
+                        HTML5 by <a href="https://www.flaticon.com/authors/icomoon" target="_blank">Icomoon</a>
+                    </li>
+                    <li>
+                        Java, Manager, paper by <a href="https://www.freepik.com/" target="_blank">Freepik</a>
+                    </li>
+                    <li>
+                        Add by <a href="https://www.flaticon.com/authors/hanan" target="_blank">Hanan</a>
+                    </li>
+                    <li>
+                        Coffee by <a href="https://www.flaticon.com/authors/pixel-perfect" target="_blank">pixel-perfect</a>
+                    </li>
+                    <li>
+                        Support by <a href="https://www.flaticon.com/authors/good-ware" target="_blank">good-ware</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Jira icon from <a href="https://iconscout.com/icon/jira-1" target="_blank">iconscout</a>
+            </li>
+            <li>
+                TamTam icon from <a href="https://tamtam.chat/">https://tamtam.chat/</a>
+            </li>
+        </ul>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="node_modules/shower-core/shower.min.js"></script>
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
